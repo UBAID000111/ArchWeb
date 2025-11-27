@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact – A° Studio</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <script type="module">
+    import { initLayout } from "./js/common.js";
+    initLayout("contact");
+    const app = document.getElementById("app");
+
+    app.innerHTML = `
+      <div class="container">
+        <section class="card">
+          <h1>Contact</h1>
+          <p class="small">We’d love to hear from you about projects, collaborations or research.</p>
+
+          <form style="margin-top:16px;" onsubmit="event.preventDefault();alert('This is a static form. Connect to backend or email service.');">
+            <div class="form-grid">
+              <div>
+                <label class="small">Name</label>
+                <input required placeholder="Your name">
+              </div>
+              <div>
+                <label class="small">Email</label>
+                <input type="email" required placeholder="you@example.com">
+              </div>
+            </div>
+            <div style="margin-top:10px;">
+              <label class="small">Message</label>
+              <textarea required placeholder="Tell us a bit about your project or inquiry."></textarea>
+            </div>
+            <button class="btn" style="margin-top:12px;">Send message</button>
+          </form>
+        </section>
+
+        <section style="margin-top:24px;">
+          <div class="card">
+            <h3>Studio</h3>
+            <p class="small">A° Studio<br>Somewhere in the city<br>India</p>
+            <p class="small">Email: hello@example.com<br>Phone: +91-00000-00000</p>
+          </div>
+        </section>
+      </div>
+    `;
+  </script>
+</body>
+</html>

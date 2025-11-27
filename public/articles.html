@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A° Studio — Articles</title>
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+
+  <!-- header + overlay -->
+  <header>
+    <nav class="nav-bar">
+  
+      <!-- Desktop navigation -->
+      <div class="nav-left desktop-only">
+        <a href="projects.html">Projects</a>
+  
+        <div class="dropdown">
+          <button class="drop-btn">Practice ▾</button>
+          <div class="drop-menu">
+            <a href="#">About Us</a>
+            <a href="#">Workshops</a>
+          </div>
+        </div>
+  
+        <div class="dropdown">
+          <button class="drop-btn">People ▾</button>
+          <div class="drop-menu">
+            <a href="#">Team</a>
+            <a href="#">Careers</a>
+          </div>
+        </div>
+  
+        <div class="dropdown">
+          <button class="drop-btn">Resources ▾</button>
+          <div class="drop-menu">
+            <a href="articles.html">Articles</a>
+            <a href="admin.html">Admin</a>
+          </div>
+        </div>
+  
+        <a href="contact.html">Contact</a>
+      </div>
+  
+      <!-- Center logo -->
+      <div class="logo desktop-only">
+        <a href="index.html">A°</a>
+      </div>
+  
+      <!-- Mobile header -->
+      <div class="mobile-header mobile-only">
+        <div class="logo-mobile"><a href="index.html">A°</a></div>
+        <button id="hamburger" class="hamburger">☰</button>
+      </div>
+  
+    </nav>
+  </header>
+  
+  <!-- Side panel overlay -->
+  <div id="overlayMenu" class="overlay-menu">
+    <div class="overlay-panel">
+      <button id="closeOverlay" class="close-btn">✕</button>
+  
+      <div class="overlay-logo">A°</div>
+  
+      <div class="overlay-section">
+        <h3>Projects</h3>
+        <a href="projects.html">All Projects</a>
+      </div>
+  
+      <div class="overlay-section">
+        <h3>Practice</h3>
+        <a href="#">About Us</a>
+        <a href="#">Workshops</a>
+      </div>
+  
+      <div class="overlay-section">
+        <h3>People</h3>
+        <a href="#">Team</a>
+        <a href="#">Careers</a>
+      </div>
+  
+      <div class="overlay-section">
+        <h3>Resources</h3>
+        <a href="articles.html">Articles</a>
+        <a href="admin.html">Admin</a>
+      </div>
+  
+      <div class="overlay-section">
+        <h3>Contact</h3>
+        <a href="contact.html">Get in touch</a>
+      </div>
+  
+      <div class="overlay-search">
+        <input placeholder="Search…">
+        <span class="arrow">→</span>
+      </div>
+    </div>
+  </div>
+  
+
+  <div id="app"></div>
+
+  <script type="module" src="./js/articles.js"></script>
+  <script type="module" src="./js/header.js"></script>
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A° Studio — Project</title>
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+
+  <header>
+    <nav class="nav-bar">
+  
+      <!-- Desktop navigation -->
+      <div class="nav-left desktop-only">
+        <a href="projects.html">Projects</a>
+  
+        <div class="dropdown">
+          <button class="drop-btn">Practice ▾</button>
+          <div class="drop-menu">
+            <a href="#">About Us</a>
+            <a href="#">Workshops</a>
+          </div>
+        </div>
+  
+        <div class="dropdown">
+          <button class="drop-btn">People ▾</button>
+          <div class="drop-menu">
+            <a href="#">Team</a>
+            <a href="#">Careers</a>
+          </div>
+        </div>
+  
+        <div class="dropdown">
+          <button class="drop-btn">Resources ▾</button>
+          <div class="drop-menu">
+            <a href="articles.html">Articles</a>
+            <a href="admin.html">Admin</a>
+          </div>
+        </div>
+  
+        <a href="contact.html">Contact</a>
+      </div>
+  
+      <!-- Center logo -->
+      <div class="logo desktop-only">
+        <a href="index.html">A°</a>
+      </div>
+  
+      <!-- Mobile header -->
+      <div class="mobile-header mobile-only">
+        <div class="logo-mobile"><a href="index.html">A°</a></div>
+        <button id="hamburger" class="hamburger">☰</button>
+      </div>
+  
+    </nav>
+  </header>
+  
+  <!-- Side panel overlay -->
+  <div id="overlayMenu" class="overlay-menu">
+    <div class="overlay-panel">
+      <button id="closeOverlay" class="close-btn">✕</button>
+  
+      <div class="overlay-logo">A°</div>
+  
+      <div class="overlay-section">
+        <h3>Projects</h3>
+        <a href="projects.html">All Projects</a>
+      </div>
+  
+      <div class="overlay-section">
+        <h3>Practice</h3>
+        <a href="#">About Us</a>
+        <a href="#">Workshops</a>
+      </div>
+  
+      <div class="overlay-section">
+        <h3>People</h3>
+        <a href="#">Team</a>
+        <a href="#">Careers</a>
+      </div>
+  
+      <div class="overlay-section">
+        <h3>Resources</h3>
+        <a href="articles.html">Articles</a>
+        <a href="admin.html">Admin</a>
+      </div>
+  
+      <div class="overlay-section">
+        <h3>Contact</h3>
+        <a href="contact.html">Get in touch</a>
+      </div>
+  
+      <div class="overlay-search">
+        <input placeholder="Search…">
+        <span class="arrow">→</span>
+      </div>
+    </div>
+  </div>
+  
+
+  <!-- ======================= MAIN CONTENT ======================= -->
+  <div id="app"></div>
+
+  <!-- ======================= PROJECT LOADER ======================= -->
+  <script type="module">
+    import { initLayout } from "./js/common.js";
+    import { db, doc, getDoc } from "./js/firebase-config.js";
+
+    initLayout("projects");
+    const app = document.getElementById("app");
+
+    async function loadProject() {
+      const params = new URLSearchParams(window.location.search);
+      const id = params.get("id");
+
+      if (!id) {
+        app.innerHTML = `
+          <div class="container"><div class="card">No project ID provided.</div></div>`;
+        return;
+      }
+
+      app.innerHTML = `
+        <div class="container"><div class="card">Loading project…</div></div>`;
+
+      const snap = await getDoc(doc(db, "projects", id));
+
+      if (!snap.exists()) {
+        app.innerHTML = `
+          <div class="container"><div class="card">Project not found.</div></div>`;
+        return;
+      }
+
+      const p = snap.data();
+
+      app.innerHTML = `
+        <div class="container">
+          <article class="card reveal">
+            <img src="${p.images?.[0] || ''}" class="banner" 
+                 alt="${p.title}" style="width:100%;border-radius:12px;margin-bottom:20px;">
+
+            <h1>${p.title}</h1>
+
+            <div class="small">
+              ${p.location || ""} 
+              ${p.year ? ` · ${p.year}` : ""}
+            </div>
+
+            ${p.category ? `<div class="chip" style="margin-top:10px;">${p.category}</div>` : ""}
+
+            <p style="margin-top:24px; font-size:1.05rem;">${p.description || ""}</p>
+
+            ${p.images && p.images.length > 1 ? `
+              <h2 style="margin-top:34px;">Gallery</h2>
+
+              <div class="grid" style="margin-top:16px;">
+                ${p.images.slice(1).map(img => `
+                  <img src="${img}" 
+                    style="width:100%;height:220px;object-fit:cover;border-radius:8px;" loading="lazy">
+                `).join("")}
+              </div>
+            ` : ""}
+          </article>
+        </div>
+      `;
+    }
+
+    loadProject().catch(err => {
+      console.error(err);
+      app.innerHTML = `
+        <div class="container"><div class="card">Error loading project.</div></div>`;
+    });
+  </script>
+
+  <!-- ======================= HEADER SCRIPT ======================= -->
+  <script type="module" src="./js/header.js"></script>
+  
+
+</body>
+</html>

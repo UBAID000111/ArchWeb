@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>People – A° Studio</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <script type="module">
+    import { initLayout } from "./js/common.js";
+    initLayout("people");
+    const app = document.getElementById("app");
+
+    app.innerHTML = `
+      <div class="container">
+        <section class="card">
+          <h1>People</h1>
+          <p class="small">A small studio of architects, researchers and visual storytellers.</p>
+        </section>
+
+        <section style="margin-top:20px;">
+          <h2 class="section-title"><span>Team</span></h2>
+          <div class="grid">
+            <article class="card">
+              <h3>Principal Name</h3>
+              <div class="small">Founder · Architect</div>
+              <p class="small" style="margin-top:8px;">Short bio about the principal and the studio’s direction.</p>
+            </article>
+            <article class="card">
+              <h3>Designer Name</h3>
+              <div class="small">Architect</div>
+              <p class="small" style="margin-top:8px;">Short bio about design interests and focus.</p>
+            </article>
+          </div>
+        </section>
+
+        <section style="margin-top:26px;">
+          <h2 class="section-title"><span>Careers</span></h2>
+          <div class="card">
+            <p class="small">We occasionally open positions for architects, interns and visual designers.</p>
+            <ul class="small">
+              <li>Architect / Urban Designer – New Delhi</li>
+              <li>Design Intern – Remote / Hybrid</li>
+            </ul>
+            <p class="small">Send a concise portfolio and CV to careers@example.com.</p>
+          </div>
+        </section>
+      </div>
+    `;
+  </script>
+</body>
+</html>
